@@ -3,274 +3,537 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#25343F">
+  <meta name="description" content="Book a professional driver to drive your own car. Had a few drinks? Feeling tired? TipsyDrive gets you and your car home safely.">
   <title>TipsyDrive — Your Driver, Your Car</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       color: #25343F;
-      background: #EAEFEF;
+      background: #25343F;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Nav */
-    nav {
+    /* ---- HERO (dark, full viewport on mobile) ---- */
+    .hero {
+      min-height: 100svh;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: #25343F;
+      flex-direction: column;
+      padding: 0 20px env(safe-area-inset-bottom, 20px);
     }
+
+    .hero-top {
+      padding-top: 20px;
+    }
+
     .logo {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       color: #fff;
       text-decoration: none;
+      letter-spacing: -0.3px;
     }
     .logo span { color: #FF9B51; }
 
-    /* Hero */
-    .hero {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 80px 24px;
-      text-align: center;
+    .hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 540px;
+      padding: 32px 0;
     }
+
     .hero h1 {
-      font-size: 48px;
+      font-size: 36px;
       font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 20px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
     }
     .hero h1 span { color: #FF9B51; }
-    .hero p.tagline {
-      font-size: 20px;
-      color: #6B7B8A;
-      margin-bottom: 48px;
-      line-height: 1.5;
+
+    .hero .tagline {
+      font-size: 16px;
+      color: #8A9BA8;
+      line-height: 1.6;
+      margin-bottom: 36px;
     }
 
-    /* How it works */
-    .how-it-works {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 32px;
-      max-width: 800px;
-      margin: 0 auto 64px;
-      padding: 0 24px;
+    /* Download buttons — stacked on mobile */
+    .download-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
-    .step {
-      text-align: center;
-    }
-    .step-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #FF9B51;
-      color: #fff;
-      font-weight: 700;
-      font-size: 18px;
-      display: inline-flex;
+
+    .dl-btn {
+      display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 12px;
-    }
-    .step h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .step p {
-      font-size: 14px;
-      color: #6B7B8A;
-      line-height: 1.5;
-    }
-
-    /* Download section */
-    .download {
-      background: #25343F;
-      padding: 64px 24px;
-      text-align: center;
-    }
-    .download h2 {
-      font-size: 32px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-    .download p {
-      color: #6B7B8A;
-      font-size: 16px;
-      margin-bottom: 40px;
-    }
-    .download-cards {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      flex-wrap: wrap;
-    }
-    .download-card {
-      background: #2F4250;
-      border-radius: 16px;
-      padding: 32px 40px;
-      min-width: 260px;
-    }
-    .download-card h3 {
-      color: #fff;
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .download-card p {
-      color: #6B7B8A;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 14px 32px;
-      border-radius: 12px;
+      gap: 10px;
+      padding: 16px 24px;
+      border-radius: 14px;
       font-size: 16px;
       font-weight: 600;
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: transform 0.15s, opacity 0.15s;
+      -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover { opacity: 0.9; }
-    .btn-accent {
+    .dl-btn:active { transform: scale(0.97); }
+
+    .dl-btn-primary {
       background: #FF9B51;
       color: #fff;
     }
-    .btn-outline {
-      border: 2px solid #FF9B51;
-      color: #FF9B51;
+    .dl-btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border: 1.5px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* Features */
-    .features {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 64px 24px;
+    .dl-btn svg {
+      flex-shrink: 0;
     }
-    .features h2 {
-      text-align: center;
-      font-size: 32px;
-      font-weight: 700;
-      margin-bottom: 40px;
+
+    .dl-label small {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      opacity: 0.7;
+      margin-bottom: 1px;
     }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-    }
-    .feature {
-      background: #fff;
-      border-radius: 16px;
-      padding: 28px;
-    }
-    .feature h3 {
-      font-size: 16px;
+    .dl-label strong {
       font-weight: 600;
-      margin-bottom: 6px;
     }
-    .feature p {
+
+    .dl-btn-disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .platform-note {
+      text-align: center;
+      font-size: 12px;
+      color: #556672;
+      margin-top: 16px;
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      text-align: center;
+      padding-bottom: 24px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .scroll-hint svg {
+      opacity: 0.3;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ---- HOW IT WORKS ---- */
+    .section-light {
+      background: #EAEFEF;
+    }
+
+    .how {
+      padding: 56px 20px;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #FF9B51;
+      margin-bottom: 8px;
+    }
+
+    .how h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 32px;
+      line-height: 1.2;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #25343F;
+      color: #FF9B51;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-text h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .step-text p {
       font-size: 14px;
       color: #6B7B8A;
       line-height: 1.5;
     }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 32px 24px;
-      color: #6B7B8A;
-      font-size: 14px;
+    /* ---- WHY TIPSYDRIVE ---- */
+    .why {
+      padding: 56px 20px;
+      max-width: 540px;
+      margin: 0 auto;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 32px; }
-      .hero p.tagline { font-size: 16px; }
-      .download h2 { font-size: 24px; }
-      nav { padding: 16px 20px; }
+    .why h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 28px;
+      line-height: 1.2;
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .feature {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #F5F0EB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .feature p {
+      font-size: 13px;
+      color: #6B7B8A;
+      line-height: 1.5;
+    }
+
+    /* ---- INSTALL HELP ---- */
+    .install-help {
+      padding: 0 20px 56px;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .install-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px;
+      border-left: 3px solid #FF9B51;
+    }
+
+    .install-card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .install-card ol {
+      padding-left: 18px;
+      font-size: 13px;
+      color: #6B7B8A;
+      line-height: 1.8;
+    }
+
+    /* ---- BOTTOM CTA (sticky on mobile) ---- */
+    .bottom-cta {
+      background: #25343F;
+      padding: 48px 20px;
+      text-align: center;
+    }
+
+    .bottom-cta h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .bottom-cta p {
+      font-size: 14px;
+      color: #6B7B8A;
+      margin-bottom: 24px;
+    }
+
+    .bottom-cta .download-btns {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: #1A272F;
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 13px;
+      color: #556672;
+    }
+
+    /* ---- DESKTOP (>640px) ---- */
+    @media (min-width: 641px) {
+      .hero {
+        padding: 0 40px;
+        align-items: center;
+      }
+      .hero-top {
+        width: 100%;
+        max-width: 900px;
+      }
+      .hero-content {
+        text-align: center;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: 52px;
+      }
+      .hero .tagline {
+        font-size: 18px;
+        max-width: 480px;
+      }
+      .download-btns {
+        flex-direction: row;
+        justify-content: center;
+      }
+      .dl-btn {
+        min-width: 220px;
+      }
+      .how, .why, .install-help {
+        max-width: 700px;
+      }
+      .how h2, .why h2 {
+        font-size: 28px;
+      }
+      .steps {
+        flex-direction: row;
+        gap: 24px;
+      }
+      .step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+      }
+      .features {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .bottom-cta .download-btns {
+        flex-direction: row;
+        justify-content: center;
+        max-width: 500px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="logo">Tipsy<span>Drive</span></a>
-  </nav>
-
+  <!-- HERO — download above the fold -->
   <section class="hero">
-    <h1>Your Driver, <span>Your Car</span></h1>
-    <p class="tagline">
-      Had a few drinks? Feeling tired? Don't want to drive?
-      Book a professional driver to drive your own car — safely home, anytime.
-    </p>
-  </section>
+    <div class="hero-top">
+      <a href="/" class="logo">Tipsy<span>Drive</span></a>
+    </div>
 
-  <section class="how-it-works">
-    <div class="step">
-      <div class="step-number">1</div>
-      <h3>Book a Driver</h3>
-      <p>Tell us your pickup location and where you're headed.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">2</div>
-      <h3>Driver Arrives</h3>
-      <p>A verified professional driver comes to you — wherever you are.</p>
-    </div>
-    <div class="step">
-      <div class="step-number">3</div>
-      <h3>Ride in Your Car</h3>
-      <p>Sit back and relax while they drive your car to your destination.</p>
-    </div>
-  </section>
+    <div class="hero-content">
+      <h1>Your Driver,<br><span>Your Car</span></h1>
+      <p class="tagline">
+        Had a few drinks? Feeling tired? Book a professional driver
+        to drive your own car — safely home, anytime.
+      </p>
 
-  <section class="download" id="download">
-    <h2>Download the App</h2>
-    <p>Available for Android. iOS coming soon.</p>
-    <div class="download-cards">
-      <div class="download-card">
-        <h3>Customer App</h3>
-        <p>Book a driver for your car</p>
-        <a href="#" class="btn btn-accent" id="customer-apk">Download APK</a>
+      <div class="download-btns">
+        <a href="#" class="dl-btn dl-btn-primary dl-btn-disabled" id="customer-apk">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="dl-label">
+            <small>Customer App</small>
+            <strong>Coming Soon</strong>
+          </span>
+        </a>
+        <a href="https://expo.dev/accounts/vamsi113/projects/tipsydrive-driver/builds/d7e5d979-6ea0-469f-92ce-ed70cb8296c9" class="dl-btn dl-btn-secondary" id="driver-apk">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span class="dl-label">
+            <small>Driver App</small>
+            <strong>Download APK</strong>
+          </span>
+        </a>
       </div>
-      <div class="download-card">
-        <h3>Driver App</h3>
-        <p>Earn money driving for others</p>
-        <a href="#" class="btn btn-outline" id="driver-apk">Download APK</a>
-      </div>
+      <p class="platform-note">Android only. iOS coming soon.</p>
+    </div>
+
+    <div class="scroll-hint">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
     </div>
   </section>
 
-  <section class="features">
-    <h2>Why TipsyDrive?</h2>
-    <div class="feature-grid">
-      <div class="feature">
-        <h3>Your Own Car</h3>
-        <p>Unlike cabs, our drivers come to you and drive your vehicle. No need to leave your car behind.</p>
+  <!-- HOW IT WORKS -->
+  <section class="section-light">
+    <div class="how">
+      <p class="section-label">How it works</p>
+      <h2>Home in 3 steps</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h3>Book a Driver</h3>
+            <p>Enter your pickup and drop. Get an instant fare estimate.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h3>Driver Arrives</h3>
+            <p>A verified driver reaches you. Share a 4-digit PIN to start.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h3>Relax, You're Home</h3>
+            <p>They drive your car. You sit back. Track live on the map.</p>
+          </div>
+        </div>
       </div>
-      <div class="feature">
-        <h3>Verified Drivers</h3>
-        <p>Every driver is background-checked with verified documents — license, Aadhaar, and PAN.</p>
+    </div>
+
+    <!-- WHY TIPSYDRIVE -->
+    <div class="why">
+      <p class="section-label">Why TipsyDrive</p>
+      <h2>Your car never leaves your side</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9B51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/><path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0-4 0"/><path d="M5 17H3v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2"/><path d="M9 17h6"/><path d="M14 6l-2-4"/></svg>
+          </div>
+          <div>
+            <h3>Your Own Car</h3>
+            <p>No cabs. Our driver comes to you and drives your vehicle home.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9B51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <h3>Verified Drivers</h3>
+            <p>Background-checked. License, Aadhaar, and PAN verified.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9B51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h3>Live Tracking</h3>
+            <p>Watch your ride on the map in real-time. Share trip with family.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9B51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <h3>Fair Pricing</h3>
+            <p>Upfront fare. No surge. No hidden charges. Pay by cash.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9B51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <h3>Schedule Ahead</h3>
+            <p>Planning a night out? Book up to 7 days in advance.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF9B51" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <div>
+            <h3>Night-Friendly</h3>
+            <p>Built for late nights. Quick booking when you need it most.</p>
+          </div>
+        </div>
       </div>
-      <div class="feature">
-        <h3>Real-time Tracking</h3>
-        <p>Track your ride live on the map. Share your trip with family for added safety.</p>
+    </div>
+
+    <!-- INSTALL HELP -->
+    <div class="install-help">
+      <div class="install-card">
+        <h3>First time installing an APK?</h3>
+        <ol>
+          <li>Tap the download link above</li>
+          <li>Open the downloaded <strong>.apk</strong> file</li>
+          <li>If prompted, allow "Install from unknown sources" in Settings</li>
+          <li>Tap <strong>Install</strong> and open the app</li>
+        </ol>
       </div>
-      <div class="feature">
-        <h3>Fair Pricing</h3>
-        <p>Transparent fare calculated upfront. No surge pricing, no hidden charges.</p>
-      </div>
-      <div class="feature">
-        <h3>Schedule Ahead</h3>
-        <p>Planning a night out? Book a driver in advance — up to 7 days ahead.</p>
-      </div>
-      <div class="feature">
-        <h3>Pay by Cash</h3>
-        <p>Simple cash payments. No wallet setup needed. Just pay the driver directly.</p>
-      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="bottom-cta">
+    <h2>Get home safe tonight</h2>
+    <p>Download TipsyDrive and never leave your car behind.</p>
+    <div class="download-btns">
+      <a href="#" class="dl-btn dl-btn-primary dl-btn-disabled">
+        <span class="dl-label">
+          <small>Customer App</small>
+          <strong>Coming Soon</strong>
+        </span>
+      </a>
+      <a href="https://expo.dev/accounts/vamsi113/projects/tipsydrive-driver/builds/d7e5d979-6ea0-469f-92ce-ed70cb8296c9" class="dl-btn dl-btn-secondary">
+        <span class="dl-label">
+          <small>Driver App</small>
+          <strong>Download APK</strong>
+        </span>
+      </a>
     </div>
   </section>
 
