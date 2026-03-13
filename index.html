@@ -67,11 +67,35 @@
       margin-bottom: 36px;
     }
 
-    /* Download buttons — stacked on mobile */
-    .download-btns {
+    /* Download grid */
+    .download-grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 20px;
+    }
+
+    .app-group {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .app-group-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .app-group-desc {
+      font-size: 12px;
+      color: #6B7B8A;
+      margin-bottom: 14px;
+    }
+
+    .app-group-btns {
+      display: flex;
+      gap: 10px;
     }
 
     .dl-btn {
@@ -79,24 +103,25 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 16px 24px;
-      border-radius: 14px;
-      font-size: 16px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 14px;
       font-weight: 600;
       text-decoration: none;
       transition: transform 0.15s, opacity 0.15s;
       -webkit-tap-highlight-color: transparent;
+      flex: 1;
     }
     .dl-btn:active { transform: scale(0.97); }
 
-    .dl-btn-primary {
+    .dl-btn-android {
       background: #FF9B51;
       color: #fff;
     }
-    .dl-btn-secondary {
+    .dl-btn-ios {
       background: rgba(255, 255, 255, 0.08);
       color: #fff;
-      border: 1.5px solid rgba(255, 255, 255, 0.15);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
     }
 
     .dl-btn svg {
@@ -105,25 +130,21 @@
 
     .dl-label small {
       display: block;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 400;
-      opacity: 0.7;
+      opacity: 0.65;
       margin-bottom: 1px;
+      text-align: left;
     }
     .dl-label strong {
       font-weight: 600;
+      text-align: left;
+      display: block;
     }
 
     .dl-btn-disabled {
-      opacity: 0.4;
+      opacity: 0.35;
       pointer-events: none;
-    }
-
-    .platform-note {
-      text-align: center;
-      font-size: 12px;
-      color: #556672;
-      margin-top: 16px;
     }
 
     /* Scroll hint */
@@ -301,7 +322,7 @@
       margin-bottom: 24px;
     }
 
-    .bottom-cta .download-btns {
+    .bottom-cta .download-grid {
       max-width: 400px;
       margin: 0 auto;
     }
@@ -336,12 +357,12 @@
         font-size: 18px;
         max-width: 480px;
       }
-      .download-btns {
+      .download-grid {
         flex-direction: row;
-        justify-content: center;
+        gap: 20px;
       }
-      .dl-btn {
-        min-width: 220px;
+      .app-group {
+        flex: 1;
       }
       .how, .why, .install-help {
         max-width: 700px;
@@ -364,10 +385,10 @@
         grid-template-columns: 1fr 1fr;
         gap: 16px;
       }
-      .bottom-cta .download-btns {
+      .bottom-cta .download-grid {
         flex-direction: row;
-        justify-content: center;
-        max-width: 500px;
+        max-width: 600px;
+        margin: 0 auto;
       }
     }
   </style>
@@ -387,23 +408,50 @@
         to drive your own car — safely home, anytime.
       </p>
 
-      <div class="download-btns">
-        <a href="#" class="dl-btn dl-btn-primary dl-btn-disabled" id="customer-apk">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span class="dl-label">
-            <small>Customer App</small>
-            <strong>Coming Soon</strong>
-          </span>
-        </a>
-        <a href="https://expo.dev/accounts/vamsi113/projects/tipsydrive-driver/builds/d7e5d979-6ea0-469f-92ce-ed70cb8296c9" class="dl-btn dl-btn-secondary" id="driver-apk">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span class="dl-label">
-            <small>Driver App</small>
-            <strong>Download APK</strong>
-          </span>
-        </a>
+      <div class="download-grid">
+        <!-- Customer App -->
+        <div class="app-group">
+          <div class="app-group-title">Customer App</div>
+          <div class="app-group-desc">Book a driver for your car</div>
+          <div class="app-group-btns">
+            <a href="https://expo.dev/accounts/vamsi113/projects/tipsydrive-customer/builds/5ef39312-3cb8-4b48-b6b1-a7ce4914848f" class="dl-btn dl-btn-android">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V7H6v11zM3.5 7C2.67 7 2 7.67 2 8.5v7c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-7C5 7.67 4.33 7 3.5 7zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0 0 12 0c-.96 0-1.86.23-2.66.63L7.85.14c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.97 5.97 0 0 0 6 6h12c0-2.21-1.2-4.15-2.97-5.19-.15-.1-.33-.3-.5-.65zM10 4H9V3h1v1zm5 0h-1V3h1v1z"/></svg>
+              <span class="dl-label">
+                <small>Android</small>
+                <strong>Download APK</strong>
+              </span>
+            </a>
+            <a href="#" class="dl-btn dl-btn-ios dl-btn-disabled">
+              <svg width="18" height="22" viewBox="0 0 18 22" fill="currentColor"><path d="M14.94 11.64c-.02-2.36 1.95-3.52 2.04-3.57-1.12-1.63-2.86-1.85-3.47-1.87-1.46-.16-2.89.87-3.64.87-.76 0-1.91-.86-3.15-.83-1.59.02-3.08.95-3.9 2.39-1.69 2.91-.43 7.2 1.19 9.56.81 1.16 1.76 2.45 3 2.4 1.21-.05 1.67-.77 3.13-.77 1.45 0 1.87.77 3.14.74 1.3-.02 2.12-1.16 2.91-2.33.93-1.33 1.31-2.64 1.33-2.71-.03-.01-2.55-.97-2.58-3.88zm-2.42-7.13c.65-.82 1.1-1.93.98-3.06-.94.04-2.13.66-2.81 1.46-.6.7-1.14 1.86-.99 2.95 1.05.08 2.14-.54 2.82-1.35z"/></svg>
+              <span class="dl-label">
+                <small>iOS</small>
+                <strong>Coming Soon</strong>
+              </span>
+            </a>
+          </div>
+        </div>
+        <!-- Driver App -->
+        <div class="app-group">
+          <div class="app-group-title">Driver App</div>
+          <div class="app-group-desc">Earn money driving for others</div>
+          <div class="app-group-btns">
+            <a href="https://expo.dev/accounts/vamsi113/projects/tipsydrive-driver/builds/d7e5d979-6ea0-469f-92ce-ed70cb8296c9" class="dl-btn dl-btn-android">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V7H6v11zM3.5 7C2.67 7 2 7.67 2 8.5v7c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-7C5 7.67 4.33 7 3.5 7zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0 0 12 0c-.96 0-1.86.23-2.66.63L7.85.14c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.97 5.97 0 0 0 6 6h12c0-2.21-1.2-4.15-2.97-5.19-.15-.1-.33-.3-.5-.65zM10 4H9V3h1v1zm5 0h-1V3h1v1z"/></svg>
+              <span class="dl-label">
+                <small>Android</small>
+                <strong>Download APK</strong>
+              </span>
+            </a>
+            <a href="#" class="dl-btn dl-btn-ios dl-btn-disabled">
+              <svg width="18" height="22" viewBox="0 0 18 22" fill="currentColor"><path d="M14.94 11.64c-.02-2.36 1.95-3.52 2.04-3.57-1.12-1.63-2.86-1.85-3.47-1.87-1.46-.16-2.89.87-3.64.87-.76 0-1.91-.86-3.15-.83-1.59.02-3.08.95-3.9 2.39-1.69 2.91-.43 7.2 1.19 9.56.81 1.16 1.76 2.45 3 2.4 1.21-.05 1.67-.77 3.13-.77 1.45 0 1.87.77 3.14.74 1.3-.02 2.12-1.16 2.91-2.33.93-1.33 1.31-2.64 1.33-2.71-.03-.01-2.55-.97-2.58-3.88zm-2.42-7.13c.65-.82 1.1-1.93.98-3.06-.94.04-2.13.66-2.81 1.46-.6.7-1.14 1.86-.99 2.95 1.05.08 2.14-.54 2.82-1.35z"/></svg>
+              <span class="dl-label">
+                <small>iOS</small>
+                <strong>Coming Soon</strong>
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
-      <p class="platform-note">Android only. iOS coming soon.</p>
     </div>
 
     <div class="scroll-hint">
@@ -521,19 +569,33 @@
   <section class="bottom-cta">
     <h2>Get home safe tonight</h2>
     <p>Download TipsyDrive and never leave your car behind.</p>
-    <div class="download-btns">
-      <a href="#" class="dl-btn dl-btn-primary dl-btn-disabled">
-        <span class="dl-label">
-          <small>Customer App</small>
-          <strong>Coming Soon</strong>
-        </span>
-      </a>
-      <a href="https://expo.dev/accounts/vamsi113/projects/tipsydrive-driver/builds/d7e5d979-6ea0-469f-92ce-ed70cb8296c9" class="dl-btn dl-btn-secondary">
-        <span class="dl-label">
-          <small>Driver App</small>
-          <strong>Download APK</strong>
-        </span>
-      </a>
+    <div class="download-grid">
+      <div class="app-group">
+        <div class="app-group-title">Customer App</div>
+        <div class="app-group-btns">
+          <a href="https://expo.dev/accounts/vamsi113/projects/tipsydrive-customer/builds/5ef39312-3cb8-4b48-b6b1-a7ce4914848f" class="dl-btn dl-btn-android">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V7H6v11zM3.5 7C2.67 7 2 7.67 2 8.5v7c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-7C5 7.67 4.33 7 3.5 7zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0 0 12 0c-.96 0-1.86.23-2.66.63L7.85.14c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.97 5.97 0 0 0 6 6h12c0-2.21-1.2-4.15-2.97-5.19-.15-.1-.33-.3-.5-.65zM10 4H9V3h1v1zm5 0h-1V3h1v1z"/></svg>
+            <span class="dl-label"><small>Android</small><strong>Download</strong></span>
+          </a>
+          <a href="#" class="dl-btn dl-btn-ios dl-btn-disabled">
+            <svg width="18" height="22" viewBox="0 0 18 22" fill="currentColor"><path d="M14.94 11.64c-.02-2.36 1.95-3.52 2.04-3.57-1.12-1.63-2.86-1.85-3.47-1.87-1.46-.16-2.89.87-3.64.87-.76 0-1.91-.86-3.15-.83-1.59.02-3.08.95-3.9 2.39-1.69 2.91-.43 7.2 1.19 9.56.81 1.16 1.76 2.45 3 2.4 1.21-.05 1.67-.77 3.13-.77 1.45 0 1.87.77 3.14.74 1.3-.02 2.12-1.16 2.91-2.33.93-1.33 1.31-2.64 1.33-2.71-.03-.01-2.55-.97-2.58-3.88zm-2.42-7.13c.65-.82 1.1-1.93.98-3.06-.94.04-2.13.66-2.81 1.46-.6.7-1.14 1.86-.99 2.95 1.05.08 2.14-.54 2.82-1.35z"/></svg>
+            <span class="dl-label"><small>iOS</small><strong>Coming Soon</strong></span>
+          </a>
+        </div>
+      </div>
+      <div class="app-group">
+        <div class="app-group-title">Driver App</div>
+        <div class="app-group-btns">
+          <a href="https://expo.dev/accounts/vamsi113/projects/tipsydrive-driver/builds/d7e5d979-6ea0-469f-92ce-ed70cb8296c9" class="dl-btn dl-btn-android">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V7H6v11zM3.5 7C2.67 7 2 7.67 2 8.5v7c0 .83.67 1.5 1.5 1.5S5 16.33 5 15.5v-7C5 7.67 4.33 7 3.5 7zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-5.84l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0 0 12 0c-.96 0-1.86.23-2.66.63L7.85.14c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.97 5.97 0 0 0 6 6h12c0-2.21-1.2-4.15-2.97-5.19-.15-.1-.33-.3-.5-.65zM10 4H9V3h1v1zm5 0h-1V3h1v1z"/></svg>
+            <span class="dl-label"><small>Android</small><strong>Download</strong></span>
+          </a>
+          <a href="#" class="dl-btn dl-btn-ios dl-btn-disabled">
+            <svg width="18" height="22" viewBox="0 0 18 22" fill="currentColor"><path d="M14.94 11.64c-.02-2.36 1.95-3.52 2.04-3.57-1.12-1.63-2.86-1.85-3.47-1.87-1.46-.16-2.89.87-3.64.87-.76 0-1.91-.86-3.15-.83-1.59.02-3.08.95-3.9 2.39-1.69 2.91-.43 7.2 1.19 9.56.81 1.16 1.76 2.45 3 2.4 1.21-.05 1.67-.77 3.13-.77 1.45 0 1.87.77 3.14.74 1.3-.02 2.12-1.16 2.91-2.33.93-1.33 1.31-2.64 1.33-2.71-.03-.01-2.55-.97-2.58-3.88zm-2.42-7.13c.65-.82 1.1-1.93.98-3.06-.94.04-2.13.66-2.81 1.46-.6.7-1.14 1.86-.99 2.95 1.05.08 2.14-.54 2.82-1.35z"/></svg>
+            <span class="dl-label"><small>iOS</small><strong>Coming Soon</strong></span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
